@@ -49,4 +49,12 @@ angular.module('components', []).
         '</form>',
       replace: true
     };
+  }).
+  directive('contactpartialform', function() {
+  	return {
+      restrict: 'E',
+      transclude: true,
+      scope: {},
+      templateUrl: './Partials/contact.html'
+    };
   })

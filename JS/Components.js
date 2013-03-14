@@ -5,7 +5,7 @@ angular.module('components', []).
       transclude: true,
       scope: {},
       template:
-        '<form name="htmlform" method="post" action="#">' +
+        '<form novalidate class="css-form">' +
           '<div ng-transclude></div>' +
           '<table width="450px">' +
             '<tr>'+
@@ -13,7 +13,7 @@ angular.module('components', []).
               	'<label for="first_name">First Name *</label>' +
               '</td>' +
               '<td valign="top">' +
-              	'<input  type="text" name="first_name" maxlength="50" size="30">' +
+              	'<input  type="text" name="first_name" maxlength="50" size="30" ng-model="user.fname" required >' +
               '</td>' +
             '</tr>' +
             '<tr>'+
@@ -21,7 +21,7 @@ angular.module('components', []).
               	'<label for="last_name">Last Name *</label>' +
               '</td>' +
               '<td valign="top">' +
-              	'<input  type="text" name="last_name" maxlength="50" size="30">' +
+              	'<input  type="text" name="last_name" maxlength="50" size="30" ng-model="user.lname" required >' +
               '</td>' +
             '</tr>' +
             '<tr>'+
@@ -29,7 +29,7 @@ angular.module('components', []).
               	'<label for="email">Email Address *</label>' +
               '</td>' +
               '<td valign="top">' +
-              	'<input  type="text" name="email" maxlength="80" size="30">' +
+              	'<input  type="email" name="email" maxlength="80" size="30" ng-model="user.email" required >' +
               '</td>' +
             '</tr>' +
             '<tr>'+
@@ -37,17 +37,30 @@ angular.module('components', []).
               	'<label for="comments">Comments *</label>' +
               '</td>' +
               '<td valign="top">' +
-              	'<textarea  name="comments" maxlength="1000" cols="25" rows="6"></textarea>' +
+              	'<textarea  name="comments" maxlength="1000" cols="25" rows="6" ng-model="user.comment"></textarea>' +
               '</td>' +
             '</tr>' +
             '<tr>'+
               '<td colspan="2" style="text-align:center">' +
-              	'<input type="button" value="Submit">' +
+                '<button ng-click="reset()">RESET</button> <button ng-click="update(user)">SAVE</button>' +
               '</td>' +
             '</tr>' +
           '</table>' +
         '</form>',
-      replace: true
+      replace: true,
+      controller: function ($scope) {
+      		$scope.master= {};
+      		
+      		$scope.update = function(user) {
+    			$scope.master= angular.copy(user);
+  			};
+  			
+  			$scope.reset = function() {
+    			$scope.user = angular.copy($scope.master);
+  			};
+ 
+  			$scope.reset();
+      }
     };
   }).
   directive('contactpartialform', function() {
@@ -55,6 +68,19 @@ angular.module('components', []).
       restrict: 'E',
       transclude: true,
       scope: {},
-      templateUrl: './Partials/contact.html'
+      templateUrl: './Partials/contact.html',
+      controller: function ($scope) {
+      		$scope.master= {};
+      		
+      		$scope.update = function(user) {
+    			$scope.master= angular.copy(user);
+  			};
+  			
+  			$scope.reset = function() {
+    			$scope.user = angular.copy($scope.master);
+  			};
+ 
+  			$scope.reset();
+      }
     };
   })

@@ -1,4 +1,4 @@
-<form name="htmlform2" method="post" action="#">
+<form novalidate class="css-form">
 	<div ng-transclude></div>
 	<table width="450px">
 		<tr>
@@ -6,7 +6,7 @@
 				<label for="first_name2">First Name *</label>
 			</td>
 			<td valign="top">
-				<input  type="text" name="first_name2" maxlength="50" size="30">
+				<input  type="text" name="first_name2" maxlength="50" size="30" ng-model="user.fname" required >
 			</td>
 		</tr>
 		<tr>
@@ -14,7 +14,7 @@
 				<label for="last_name2">Last Name *</label>
 			</td>
 			<td valign="top">
-				<input  type="text" name="last_name2" maxlength="50" size="30">
+				<input  type="text" name="last_name2" maxlength="50" size="30" ng-model="user.lname" required >
 			</td>
 		</tr>
 		<tr>
@@ -22,7 +22,7 @@
 				<label for="email2">Email Address *</label>
 			</td>
 			<td valign="top">
-				<input  type="text" name="email2" maxlength="50" size="30">
+				<input  type="email" name="email2" maxlength="50" size="30" ng-model="user.email" required >
 			</td>
 		</tr>
 		<tr>
@@ -30,12 +30,13 @@
 				<label for="comments2">Comments *</label>
 			</td>
 			<td valign="top">
-				<textarea  name="comments2" maxlength="1000" cols="25" rows="6"></textarea>
+				<textarea  name="comments2" maxlength="1000" cols="25" rows="6" ng-model="user.comment"></textarea>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="2" style="text-align:center">
-				<input type="button" value="Submit">
+				<button ng-click="reset()">RESET</button> 
+				<button ng-click="update(user)">SAVE</button>
 			</td>
 		</tr>
 	</table>

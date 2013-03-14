@@ -27,7 +27,7 @@
 		</tr>
 		<tr>
 			<td valign="top">
-				<label for="comments2">Comments *</label>
+				<label for="comments2">Comments</label>
 			</td>
 			<td valign="top">
 				<textarea  name="comments2" maxlength="1000" cols="25" rows="6" ng-model="user.comment"></textarea>
@@ -36,8 +36,10 @@
 		<tr>
 			<td colspan="2" style="text-align:center">
 				<button ng-click="reset()">RESET</button> 
-				<button ng-click="update(user)">SAVE</button>
+				<button ng-click="update(user)">SEND</button>
 			</td>
 		</tr>
 	</table>
 </form>
+<pre>form = {{user | json}}</pre>
+<pre>master = {{master | json}}</pre>
